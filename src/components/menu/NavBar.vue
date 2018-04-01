@@ -95,18 +95,10 @@
 </template>
 
 <script>
-//  import VContent from "vuetify/es5/components/VGrid/VContent";
-//  import VDivider from "vuetify/es5/components/VDivider/VDivider";
-//  import VAvatar from "vuetify/es5/components/VAvatar/VAvatar";
-//  import VMenu from "vuetify/es5/components/VMenu/VMenu";
   import MainContent from '@/components/content/Content'
 
   export default {
       components: {
-//          VMenu,
-//          VAvatar,
-//          VDivider,
-//          VContent,
           MainContent
       },
       computed: {

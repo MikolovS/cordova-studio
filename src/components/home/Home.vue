@@ -158,21 +158,11 @@
 </template>
 
 <script>
-import VParallax from "vuetify/es5/components/VParallax/VParallax";
-import VList from "vuetify/es5/components/VList/VList";
-import VCard from "vuetify/es5/components/VCard/VCard";
-import VCardTitle from "vuetify/es5/components/VCard/VCardTitle";
-import VContent from "vuetify/es5/components/VGrid/VContent";
-import VCardMedia from "vuetify/es5/components/VCard/VCardMedia";
 
 export default {
     components: {
-        VCardMedia,
-        VContent,
-        VCardTitle,
-        VCard,
-        VList,
-        VParallax},
+
+    },
     name: 'Home',
   data () {
     return {
