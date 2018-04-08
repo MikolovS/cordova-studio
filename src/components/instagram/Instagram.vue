@@ -18,6 +18,7 @@
           class="bg_img"
           :style="{ 'background-image': 'url(' + post.medias[0][0].url + ')' , 'height': boxHeight + 'px'}"></div>
       </v-flex>
+
     </v-layout>
   </v-flex>
 
@@ -28,23 +29,11 @@
 
 <script>
     import Axios from '@/axiosInstance';
-    import VCard from "vuetify/es5/components/VCard/VCard";
-    import VCardMedia from "vuetify/es5/components/VCard/VCardMedia";
-    import VCardTitle from "vuetify/es5/components/VCard/VCardTitle";
-    import VDialog from "vuetify/es5/components/VDialog/VDialog";
-    import VCarousel from "vuetify/es5/components/VCarousel/VCarousel";
-    import VCarouselItem from "vuetify/es5/components/VCarousel/VCarouselItem";
 
     import {instagramConstants} from '@/constants';
 
     export default {
         components: {
-            VCarouselItem,
-            VCarousel,
-            VCardTitle,
-            VCardMedia,
-            VCard,
-            VDialog
         },
         name: 'Blog',
         computed: {
