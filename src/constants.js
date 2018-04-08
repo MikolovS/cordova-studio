@@ -1,4 +1,4 @@
-const API = 'http://localhost:666/api/';
+const API = 'http://api/api/';
 
 const homeConstants = {
   home: '',
