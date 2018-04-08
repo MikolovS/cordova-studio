@@ -5,10 +5,12 @@ import {auth} from '@/services/auth'
 
 import home from '@/components/home/home.router'
 import training from '@/components/training/training.router'
+import command from '@/components/command/command.router'
+import timetable from '@/components/timetable/timetable.router'
 import blog from '@/components/blog/blog.router'
 import instagram from '@/components/instagram/instagram.router'
 
-let appRoutes = [...home, ...training, ...blog, ...instagram];
+let appRoutes = [...home, ...training, ...command, ...timetable, ...blog, ...instagram];
 
 Vue.use(Router);
 

@@ -76,6 +76,16 @@
                       'description' : '23233241234',
                       'img' : 'static/img/home/exotic.jpg'
                   },
+                  {
+                      'name' : 'Exotic',
+                      'description' : '23233241234',
+                      'img' : 'static/img/home/exotic.jpg'
+                  },
+                  {
+                      'name' : 'Exotic',
+                      'description' : '23233241234',
+                      'img' : 'static/img/home/exotic.jpg'
+                  },
               ]
           }
       }

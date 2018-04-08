@@ -4,6 +4,6 @@ export default [
   {
     path: '/training',
     component: Training,
-    meta: {title: 'Training'}
+    meta: {title: 'Направления'}
   }
 ]

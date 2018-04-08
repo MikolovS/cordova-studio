@@ -4,6 +4,6 @@ export default [
   {
     path: '/',
     component: Home,
-    meta: {title: 'Главная'}
+    meta: {title: 'Rock&Pole'}
   }
 ]
