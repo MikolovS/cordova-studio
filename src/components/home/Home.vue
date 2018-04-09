@@ -106,12 +106,10 @@
             <v-flex xs12 sm4>
               <v-card class="elevation-0 transparent">
                 <v-card-title primary-title class="layout justify-center">
-                  <div class="headline">Company info</div>
+                  <div class="headline">Иформация о студии</div>
                 </v-card-title>
                 <div>
-                  Cras facilisis mi vitae nunc lobortis pharetra. Nulla volutpat tincidunt ornare.
-                  Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-                  Nullam in aliquet odio. Aliquam eu est vitae tellus bibendum tincidunt. Suspendisse potenti.
+                  <b>Rock&Pole</b> - студия акробатики и спорта на пилоне. Все направления - pole kids, pole sport, exotic pole, stretching.
                 </div>
               </v-card>
             </v-flex>
@@ -129,7 +127,7 @@
                       <v-icon class="blue--text text--lighten-2">phone</v-icon>
                     </v-list-tile-action>
                     <v-list-tile-content>
-                      <v-list-tile-title>777-867-5309</v-list-tile-title>
+                      <v-list-tile-title>‎063-417-05-91</v-list-tile-title>
                     </v-list-tile-content>
                   </v-list-tile>
                   <v-list-tile>
@@ -137,15 +135,15 @@
                       <v-icon class="blue--text text--lighten-2">place</v-icon>
                     </v-list-tile-action>
                     <v-list-tile-content>
-                      <v-list-tile-title>Одесса, ул-Тираспольская 4</v-list-tile-title>
+                      <v-list-tile-title><a href="https://www.google.ru/maps/place/%D0%A2%D0%B8%D1%80%D0%B0%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F+%D1%83%D0%BB.,+4,+%D0%9E%D0%B4%D0%B5%D1%81%D1%81%D0%B0,+%D0%9E%D0%B4%D0%B5%D1%81%D1%81%D0%BA%D0%B0%D1%8F+%D0%BE%D0%B1%D0%BB%D0%B0%D1%81%D1%82%D1%8C,+65000/@46.4798548,30.728593,17z/data=!3m1!4b1!4m5!3m4!1s0x40c63190f14eba53:0x783a039b93654a6a!8m2!3d46.4798548!4d30.7307817" class="noUnderline" target="_blank">г.Одесса, ул-Тираспольская 4</a></v-list-tile-title>
                     </v-list-tile-content>
                   </v-list-tile>
                   <v-list-tile>
                     <v-list-tile-action>
-                      <v-icon class="blue--text text--lighten-2">email</v-icon>
+                      <img src="static/img/instagram.png" alt="">
                     </v-list-tile-action>
                     <v-list-tile-content>
-                      <v-list-tile-title>john@vuetifyjs.com</v-list-tile-title>
+                      <v-list-tile-title><a href="https://www.instagram.com/rock_n_pole/" class="noUnderline"  target="_blank">rock_n_pole</a></v-list-tile-title>
                     </v-list-tile-content>
                   </v-list-tile>
                 </v-list>
@@ -173,5 +171,7 @@ export default {
 </script>
 
 <style scoped>
-
+  .noUnderline {
+    text-decoration-line: none;
+  }
 </style>

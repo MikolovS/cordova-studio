@@ -20,8 +20,8 @@
                         :key="i"
                         :id="'tab-' + i"
                 >
-                    <section>
-                            <v-layout row wrap justify-center>
+                    <v-container>
+                            <v-layout row wrap justify-center class="my-5">
                                 <v-flex xs12 sm10 lg8 offset-xs0>
                                     <!--<img :src="training.img" :alt="training.img"-->
                                          <!--style="max-width: 100%;-->
@@ -36,12 +36,12 @@
                                     <div class="headline text-xs-center"><h4>{{ training.name }}</h4></div>
                                     </v-card-title>
                                     <p class="word-wrap">{{ training.description }}</p>
-                                    <p class="word-wrap"><b>Что надо с собой иметь на тренировке: </b>{{ training.requirements }}</p>
-                                    <p class="word-wrap"><b>Длительность тренировки один час, включает в себя: </b>{{ training.duration }}</p>
+                                    <p><b>Что надо с собой иметь на тренировке: </b>{{ training.requirements }}</p>
+                                    <p><b>Длительность тренировки один час, включает в себя: </b>{{ training.duration }}</p>
                                     </v-card>
                                 </v-flex>
                             </v-layout>
-                    </section>
+                    </v-container>
                 </v-tab-item>
             </v-tabs-items>
         </v-tabs>
@@ -95,6 +95,9 @@
 <style scoped>
     .word-wrap {
         white-space: pre-wrap !important;
-        padding: 5px
+        padding: 5px;
+        text-indent: 50px;
+        text-align: justify;
+        /*letter-spacing: 3px;*/
     }
 </style>
