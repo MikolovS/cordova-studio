@@ -1,30 +1,16 @@
 <template>
-
-  <v-layout
-          column
-          align-center
-          justify-center
-          class="white--text"
-  >
-  <v-flex xs12 lg6 wrap column>
-    <v-layout row wrap align-center>
-      <v-flex xs4 md3
-              v-for="(post, i) in posts"
-              key="i"
-              class="instagram_flex_box"
-      >
-        <div
-
-          class="bg_img"
-          :style="{ 'background-image': 'url(' + post.medias[0][0].url + ')' , 'height': boxHeight + 'px'}"></div>
-      </v-flex>
-
-    </v-layout>
-  </v-flex>
-
-  </v-layout>
-
-
+  <section>
+    <v-container offset-xs0>
+      <v-infinite-scroll :loading="loading" @top="prevPage" @bottom="nextPage" :offset='onPage' style="max-height: 90vh; overflow-y: scroll;">
+      <v-layout row wrap justify-center  v-if="posts"
+                v-for="(post, i) in posts"
+                :key="i">
+        <v-flex xs12 sm4 lg4 offset-xs0 v-html="post.embed">
+        </v-flex>
+      </v-layout>
+      </v-infinite-scroll>
+    </v-container>
+  </section>
 </template>
 
 <script>
@@ -35,11 +21,16 @@
     export default {
         components: {
         },
-        name: 'Blog',
+        name: 'Instagram',
         computed: {
 
         },
         mounted () {
+        },
+        updated: function () {
+            this.$nextTick(function () {
+                window.instgrm.Embeds.process()
+            })
         },
         created() {
             let that = this;
@@ -47,47 +38,37 @@
         },
         data () {
             return {
-                page: 2,
-                on_page: 6,
-                PHOTO: 1,
-                ALBUM: 8,
-                VIDEO: 2,
-                boxHeight: document.querySelector('.instagram_flex_box').offsetWidth,
-                dialog: false,
-                selectedPost: {
-                    title: '',
-                    img: '',
-                    hashtags: [
-                        '',
-                        '',
-                        '',
-                    ],
-                    likes: 0,
-                    comments:{
-                        username: '',
-                        text: ''
-                    }
-                },
-                posts: []
+                page: 1,
+                onPage: 10,
+                posts: [],
+                loading: false
             }
         },
         methods: {
-            openModal(post) {
-                this.selectedPost = post;
-                this.dialog = true;
+            prevPage () {
+                if (this.page === 1)
+                    return
+                --this.page
+                this.getFeed()
+            },
+            nextPage () {
+                if (this.loading)
+                    return
+                ++this.page
+                this.getFeed()
             },
             getFeed() {
                 let that = this;
                 let params = {
                     page: this.page,
-                    on_page: this.on_page,
+                    on_page: this.onPage,
                 };
-                Axios.get(instagramConstants.feed, params)
+                Axios.get(instagramConstants.feed, {params})
                     .then((res)=> {
-//                        console.log(res.data[0].medias);
-                        that.posts = res.data;
-                        console.log(that.posts[0].medias[0][0].url);
-//                        console.log(that.posts);
+                    if (res.data.length > 0)
+                        that.posts = that.posts.concat(res.data)
+                      else
+                        that.loading = true
                     })
                     .catch((error)=> {
                         console.log('error');
@@ -98,18 +79,5 @@
 </script>
 
 <style scoped>
-  .bg_img {
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    /*max-height: 240px;*/
-    min-height: 100px;
-    min-width: 100px;
-    /*max-width: 240px;*/
-  }
- /*.carousel {*/
-  /*overflow: inherit !important;*/
-   /*height: auto !important;*/
- /*}*/
+
 </style>

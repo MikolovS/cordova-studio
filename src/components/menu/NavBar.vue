@@ -132,7 +132,7 @@
                       icon: 'alarm',
                   },
                   {
-                      title: 'Инстаграм',
+                      title: 'Instagram',
                       to: '#/instagram',
                       icon: 'bubble_chart'
                   },
