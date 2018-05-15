@@ -1,4 +1,4 @@
-import Training from '@/components/training/Training'
+import Training from '@/components/training/training'
 
 export default [
   {

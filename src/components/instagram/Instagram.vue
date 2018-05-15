@@ -46,14 +46,17 @@
         },
         methods: {
             prevPage () {
-                if (this.page === 1)
+                if (this.page === 1){
                     return
+                }
                 --this.page
                 this.getFeed()
             },
             nextPage () {
-                if (this.loading)
+                if (this.loading){
                     return
+                }
+
                 ++this.page
                 this.getFeed()
             },

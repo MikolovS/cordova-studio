@@ -1,47 +1,83 @@
-import axios from 'axios';
-import { API } from '@/constants';
+import Axios from '@/axiosInstance';
+import router from '../router/index';
+import {authenticate} from '../constants';
+import {store} from '../store/index';
 
-let auth = {
-
-  isAuthenticated: function () {
-    return this.getToken() !== null;
-  },
-
-  login: function (credentials) {
-    return axios.post(API + 'auth', credentials)
-  },
-
-  setHeaders: function () {
-    axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.getToken();
-  },
-
-  removeHeaders: function () {
-    delete axios.defaults.headers.common['Authorization']
-  },
-
-  setToken: function (token) {
-    localStorage.setItem('access_token', token);
-  },
-
-  getToken: function () {
-    return localStorage.getItem('access_token');
-  },
-
-  removeToken: function () {
-    localStorage.removeItem('access_token');
-  },
-
-  setUser: function (user) {
-    let keys = Object.keys(user);
-    for (let i = 0, l = keys.length; i < l; i++) {
-      localStorage.setItem(keys[i], user[keys[i]])
+export default new class Authorization {
+    constructor() {
+        this.setHeader()
     }
-  },
 
-  removeUser: function () {
-    localStorage.clear()
-  }
+    async login(payload) {
+        try {
+            const res = await Axios.post(authenticate.login, payload);
+            console.log(res.data.token);
+            this.setToken(res.data.token);
+            this.setHeader();
+            await this.getUser();
+            router.push('/');
+        }
+        catch (error) {
+            alert(error.response.data.message)
+        }
+    }
 
-};
+    async logout() {
+        await this.logoutFromApi();
+        this.removeUser();
+        this.removeToken();
+        this.removeHeader();
+        router.push('/');
+    }
 
-export { auth }
+    //Tokens
+     getToken() {
+        return localStorage.getItem('token');
+    }
+
+     setToken(token) {
+        localStorage.setItem('token', token);
+    }
+
+     removeToken() {
+        localStorage.removeItem('token');
+    }
+
+    //Axios headers
+     setHeader() {
+         Axios.defaults.headers.common['Authorization'] = `Bearer ${this.getToken()}`;
+    }
+
+     removeHeader() {
+        delete Axios.defaults.headers.common['Authorization']
+    }
+
+    //Users
+     async getUser() {
+        try {
+            const res = await Axios.get(authenticate.getUser);
+            this.setUser(res.data.data)
+        }
+        catch (error) {
+            alert(error)
+        }
+    }
+
+    async logoutFromApi() {
+        try {
+            await Axios.post(authenticate.logout);
+        }
+        catch (error) {
+            alert(error)
+        }
+    }
+
+     setUser(user) {
+        localStorage.setItem('user', JSON.stringify(user));
+        store.commit('SET_USER')
+    }
+
+     removeUser() {
+        localStorage.removeItem('user');
+    }
+}

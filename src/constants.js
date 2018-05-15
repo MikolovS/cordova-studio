@@ -1,10 +1,18 @@
-const API = 'http://api/api/';
+const API = 'http://192.168.10.167:666/api/';
 
 const homeConstants = {
-  home: '',
+    home: '',
 };
 
 const instagramConstants = {
     feed: 'instagram',
 };
-export { API, homeConstants, instagramConstants}
+
+const authenticate = {
+    login: 'auth/login',
+    logout: 'auth/logout',
+    getUser: 'auth/user',
+    register: 'auth/register'
+};
+
+export {API, homeConstants, instagramConstants, authenticate}

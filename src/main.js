@@ -6,6 +6,7 @@ import 'vuetify/dist/vuetify.css'
 import VueCordova from 'vue-cordova'
 import VueHead from 'vue-head'
 import InfiniteScroll from 'v-infinite-scroll'
+import {store} from './store/index'
 
 import App from './App'
 import router from './router'
@@ -28,6 +29,7 @@ if (window.location.protocol === 'file:' || window.location.port === '3000') {
 new Vue({
   el: '#app',
   router,
+  store,
   template: '<App/>',
   components: { App },
   head: {

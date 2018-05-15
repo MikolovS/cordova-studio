@@ -1,4 +1,4 @@
-import Command from '@/components/command/Command'
+import Command from '@/components/command/command'
 
 export default [
   {

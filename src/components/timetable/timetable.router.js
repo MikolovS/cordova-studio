@@ -1,4 +1,4 @@
-import Timetable from '@/components/timetable/Timetable'
+import Timetable from '@/components/timetable/timetable'
 
 export default [
   {
