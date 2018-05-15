@@ -15,7 +15,7 @@
                     class="blue lighten-2 mt-5"
                     dark
                     large
-                    to="/qwerty"
+                    to="/contact"
             >
               Записаться
             </v-btn>
@@ -86,15 +86,15 @@
       <section>
         <v-parallax src="static/img/home/section.jpg" height="380">
           <v-layout column align-center justify-center>
-            <div class="headline white--text mb-3 text-xs-center">Web development has never been easier</div>
-            <em>Kick-start your application today</em>
+            <div class="headline white--text mb-3 text-xs-center">В здоровом теле - здоровый дух</div>
+            <em>Начнитн новую жизнь уже сегодня</em>
             <v-btn
                     class="blue lighten-2 mt-5"
                     dark
                     large
-                    href="/pre-made-themes"
+                    to="/contact"
             >
-              Get Started
+              Присоедениться
             </v-btn>
           </v-layout>
         </v-parallax>
@@ -109,18 +109,18 @@
                   <div class="headline">Иформация о студии</div>
                 </v-card-title>
                 <div>
-                  <b>Rock&Pole</b> - студия акробатики и спорта на пилоне. Все направления - pole kids, pole sport, exotic pole, stretching.
+                  <b>Rock&Pole</b> - студия танца и спортивной акробатики на пилоне. Мы работаем в таких направлениях, как: pole sport, pole kids, exotic pole, pole art. У нас вы найдёте то, что подойдёт именно вам! Удобная транспортная развязка, грамотные тренера и уютная атмосфера. Мы вас ждём!
                 </div>
               </v-card>
             </v-flex>
             <v-flex xs12 sm4 offset-sm1>
               <v-card class="elevation-0 transparent">
                 <v-card-title primary-title class="layout justify-center">
-                  <div class="headline">Контактная Информация</div>
+                  <div class="headline text-xs-center"><h4>Контакты</h4></div>
                 </v-card-title>
-                <div>
-                  По всем вопросам обращатся к руководителю студии - <b>Миколова Анастасия Юриевна</b>
-                </div>
+                <v-card-text>
+                  Вы можете связаться с Нами любым удобным для Вас способом:
+                </v-card-text>
                 <v-list class="transparent">
                   <v-list-tile>
                     <v-list-tile-action>
@@ -140,10 +140,18 @@
                   </v-list-tile>
                   <v-list-tile>
                     <v-list-tile-action>
-                      <img src="static/img/instagram.png" alt="">
+                      <img src="static/img/instagram.png" alt="intsagram" height="24px">
                     </v-list-tile-action>
                     <v-list-tile-content>
                       <v-list-tile-title><a href="https://www.instagram.com/rock_n_pole/" class="noUnderline"  target="_blank">rock_n_pole</a></v-list-tile-title>
+                    </v-list-tile-content>
+                  </v-list-tile>
+                  <v-list-tile>
+                    <v-list-tile-action>
+                      <v-icon class="blue--text text--lighten-2">email</v-icon>
+                    </v-list-tile-action>
+                    <v-list-tile-content>
+                      <v-list-tile-title>rocknpole.od.@gmail.com</v-list-tile-title>
                     </v-list-tile-content>
                   </v-list-tile>
                 </v-list>

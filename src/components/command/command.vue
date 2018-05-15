@@ -1,15 +1,12 @@
 <template>
-        <v-tabs
-                dark
-                color="cyan"
-                show-arrows
-                fixed-tabs
-        >
+
+        <v-tabs dark color="cyan" show-arrows fixed-tabs>
+
             <v-tabs-slider color="yellow"></v-tabs-slider>
             <v-tab
-                    v-for="(trainer, i) in trainers"
-                    :key="i"
-                    :href="'#tab-' + i"
+                v-for="(trainer, i) in trainers"
+                :key="i"
+                :href="'#tab-' + i"
             >
                 <v-avatar class="grey lighten-4" size="40px">
                     <img :src="trainer.img" alt="avatar">
@@ -19,9 +16,9 @@
 
             <v-tabs-items>
                 <v-tab-item
-                        v-for="(trainer, i) in trainers"
-                        :key="i"
-                        :id="'tab-' + i"
+                    v-for="(trainer, i) in trainers"
+                    :key="i"
+                    :id="'tab-' + i"
                 >
                     <v-container grid-list-xl>
                         <v-layout row wrap justify-center class="my-5">
@@ -75,7 +72,6 @@
                 </v-tab-item>
             </v-tabs-items>
         </v-tabs>
-
 
 </template>
 
