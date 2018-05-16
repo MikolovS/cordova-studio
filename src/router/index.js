@@ -10,8 +10,9 @@ import timetable from '@/components/timetable/timetable.router'
 import blog from '@/components/blog/blog.router'
 import instagram from '@/components/instagram/instagram.router'
 import contact from '@/components/contact/contact.router'
+import login from '@/components/login/login.router'
 
-let appRoutes = [...home, ...training, ...command, ...timetable, ...blog, ...instagram, ...contact];
+let appRoutes = [...home, ...training, ...command, ...timetable, ...blog, ...instagram, ...contact, ...login];
 
 Vue.use(Router);
 

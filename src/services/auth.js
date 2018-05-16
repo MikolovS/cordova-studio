@@ -73,11 +73,15 @@ export default new class Authorization {
     }
 
      setUser(user) {
+        if (user.avatar === null) {
+            user['avatar'] = 'static/img/no-avatar.jpg';
+        }
         localStorage.setItem('user', JSON.stringify(user));
         store.commit('SET_USER')
     }
 
      removeUser() {
         localStorage.removeItem('user');
+        store.commit('DELETE_USER')
     }
 }

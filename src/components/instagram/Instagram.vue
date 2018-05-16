@@ -1,6 +1,6 @@
 <template>
   <section>
-    <v-container offset-xs0>
+    <v-container style="padding: 0 !important;">
       <v-infinite-scroll :loading="loading" @top="prevPage" @bottom="nextPage" :offset='onPage' style="max-height: 90vh; overflow-y: scroll;">
       <v-layout row wrap justify-center  v-if="posts"
                 v-for="(post, i) in posts"
