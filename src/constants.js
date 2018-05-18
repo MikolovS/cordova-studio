@@ -15,4 +15,12 @@ const authenticate = {
     register: 'auth/register'
 };
 
-export {API, homeConstants, instagramConstants, authenticate}
+const ADMIN = 'admin/';
+const CRUD = ADMIN + 'crud/';
+
+const trainingConstants  = {
+    create: CRUD + 'training', //POST
+    get: CRUD + 'training' //GET
+};
+
+export {API, homeConstants, instagramConstants, authenticate, trainingConstants}

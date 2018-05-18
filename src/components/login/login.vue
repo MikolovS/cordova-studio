@@ -67,7 +67,7 @@ export default {
     methods: {
       login(){
 //          email: 'admin@admin.com',
-//              password: 'password'
+//          password: 'password'
           let params = {
               email: this.email,
               password: this.password
