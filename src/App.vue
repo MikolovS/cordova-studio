@@ -4,6 +4,7 @@
       <nav-bar></nav-bar>
     </v-content>
     <footer-bar></footer-bar>
+    <notifications  position="bottom right"/>
   </v-app>
 </template>
 

@@ -10,12 +10,14 @@ import {store} from './store/index'
 
 import App from './App'
 import router from './router'
+import Notifications from 'vue-notification'
 
 Vue.use(Vuetify)
 Vue.config.productionTip = false
 Vue.use(VueCordova)
 Vue.use(VueHead)
 Vue.use(InfiniteScroll)
+Vue.use(Notifications)
 
 // add cordova.js only if serving the app through file://
 if (window.location.protocol === 'file:' || window.location.port === '3000') {

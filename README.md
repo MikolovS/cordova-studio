@@ -1,4 +1,4 @@
-# cordoca-studio
+# cordoca-studio kill -9 $(ps aux | grep '\snode\s' | awk '{print $2}')
 
 > A Vue.js project
 

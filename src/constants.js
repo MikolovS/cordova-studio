@@ -14,13 +14,18 @@ const authenticate = {
     getUser: 'auth/user',
     register: 'auth/register'
 };
-
+//ADMIN
 const ADMIN = 'admin/';
 const CRUD = ADMIN + 'crud/';
+//TRAINING
+const TRAINING = 'training/';
+const TRAINING_CRUD = CRUD + TRAINING;
 
 const trainingConstants  = {
-    create: CRUD + 'training', //POST
-    get: CRUD + 'training' //GET
+    create: TRAINING_CRUD, //POST
+    get: TRAINING_CRUD, //GET
+    saveOrderAndDisplay: TRAINING_CRUD + 'saveOrderAndDisplay', //POST
+    delete: TRAINING_CRUD //POST
 };
 
 export {API, homeConstants, instagramConstants, authenticate, trainingConstants}
