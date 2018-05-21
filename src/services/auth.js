@@ -1,6 +1,6 @@
-import Axios from '@/axiosInstance';
+import Axios from '@/core/axiosInstance';
 import router from '../router/index';
-import {authenticate} from '../constants';
+import {authenticate} from '../core/constants';
 import {store} from '../store/index';
 
 export default new class Authorization {

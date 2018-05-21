@@ -14,9 +14,8 @@
 </template>
 
 <script>
-    import Axios from '@/axiosInstance';
 
-    import {instagramConstants} from '@/constants';
+    import {instagramConstants} from '@/core/constants';
 
     export default {
         components: {

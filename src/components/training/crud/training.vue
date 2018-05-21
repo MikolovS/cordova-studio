@@ -22,6 +22,7 @@
               required
       ></v-text-field>
       <picture-input
+              v-if="! image_url"
               ref="pictureInput"
               @change="onChange"
               width="600"
@@ -32,9 +33,16 @@
               buttonClass="btn"
               :customStrings="{
                 upload: '<h1>Bummer!</h1>',
-                drag: 'Drag a 😺 GIF or GTFO'
+                drag: 'Drag a 😺 .jpeg, .png '
               }">
       </picture-input>
+      <div class="text-xs-center" v-else>
+          <img :src="image_url" alt="training.img_url" style="max-width: 600px">
+      </div>
+      <div class="text-xs-center" >
+        <v-btn v-if="image_url"  large color="info" dark  @click="changeImage()">Сменить картинку</v-btn>
+        <v-btn v-if="old_img_url" large color="info" dark  @click="returnOldImage()">Вернуть картинку</v-btn>
+      </div>
       <div class="text-xs-center" v-if="readyToSave">
         <br>
         <hr>
@@ -48,9 +56,8 @@
 
     import { VueEditor } from 'vue2-editor'
     import PictureInput from 'vue-picture-input'
-    import Axios from '@/axiosInstance';
 
-    import {trainingConstants} from '@/constants';
+    import {trainingConstants} from '@/core/constants';
 
     export default {
         props:[
@@ -62,18 +69,19 @@
       },
         computed: {
           readyToSave : function () {
-              console.log(this.valid, (this.image !== null), (this.description !== ''));
-              return ((this.valid === true) && (this.image !== null) && (this.description !== ''))
+              return ((this.valid === true) && ((this.image_url !==null) || (this.image !== null)) && (this.description !== ''))
           },
         },
       name: 'crudTraining',
       data () {
           return {
-              training: null,
               valid: false,
 
 //              FORM
+              isNew: false,
               image: null,
+              image_url: null,
+              old_img_url: null,
               description: '',
               name: '',
               nameRules: [
@@ -91,10 +99,16 @@
           }
       },
         created() {
-            if (this.training){
-                console.log(training);
+
+            if (this.training !== null){
+                this.description = this.training.description;
+                this.name = this.training.display_name;
+                this.requirements = this.training.requirements;
+                this.duration = this.training.duration;
+                this.image_url = this.training.img_url;
+            } else {
+                this.isNew = true;
             }
-            console.log(this.training);
         },
       methods: {
           onChange (image) {
@@ -106,7 +120,7 @@
                   console.log('FileReader API not supported: use the <form>, Luke!')
               }
           },
-          save() {
+          async save() {
               let params = {
                   display_name: this.name,
                   description: this.description,
@@ -114,15 +128,23 @@
                   requirements: this.requirements,
                   duration: this.duration,
               };
-              Axios.post(trainingConstants.create, params)
+
+              await this.$axios.post(trainingConstants.create, params)
                   .then((res)=> {
                       console.log(res)
                   })
                   .catch((error)=> {
                       console.log(error);
                   })
+          },
+          changeImage(){
+              this.old_img_url = this.image_url;
+              this.image_url = null;
+          },
+          returnOldImage(){
+              this.image_url = this.old_img_url;
+              this.old_img_url = null;
           }
-
       }
 }
 </script>

@@ -2,11 +2,11 @@
 
     <v-container style="padding: 0 !important;">
         <v-layout row wrap justify-center class="my-5">
-          <v-flex xs12 md4 lg5 >
+          <v-flex xs12 md4 lg5 v-if="! openModal">
 
             <v-layout row wrap justify-center  class="text-lg-center">
               <v-flex xs6 lg6>
-                <v-btn>
+                <v-btn @click="createTraining()">
                   <v-icon>add_circle</v-icon>
                   <span class="hidden-xs-only">Добавить направление</span>
                 </v-btn>
@@ -44,7 +44,7 @@
                   </v-flex>
                   <v-flex xs2 lg2>
                     <p class="hidden-xs-only">Изменить</p>
-                    <v-btn fab small><v-icon>edit</v-icon></v-btn>
+                    <v-btn fab small @click="editTraining(item)"><v-icon>edit</v-icon></v-btn>
                   </v-flex>
                   <v-flex xs3 lg2>
                     <p class="hidden-xs-only">Удалить</p>
@@ -60,7 +60,7 @@
           </draggable>
           </v-flex>
 
-          <training v-if="selectedTraining" :training="selectedTraining"></training>
+          <training v-if="openModal" :training="selectedTraining"></training>
 
         </v-layout>
     </v-container>
@@ -69,12 +69,11 @@
 
 <script>
 
-    import Axios from '@/axiosInstance';
     import draggable from 'vuedraggable'
     import Training from '@/components/training/crud/training'
     import notifyTemplate from '@/helpers/notifyTemplate'
 
-    import {trainingConstants} from '@/constants'
+    import {trainingConstants} from '@/core/constants'
 
 
     export default {
@@ -89,16 +88,13 @@
       data () {
           return {
             selectedTraining: null,
+            openModal: false,
             trainings: null
           }
       },
       async created() {
-          try{
-              const res = await Axios.get(trainingConstants.get);
-              this.trainings = res.data.data;
-          } catch (error) {
-              console.log(error);
-          }
+          let res = await this.$axios.get(trainingConstants.get);
+          this.trainings = res.data.data;
       },
       methods: {
           async saveOrderAndDisplay(){
@@ -111,15 +107,17 @@
                 };
               });
 
-              try{
-                  const res = await Axios.post(trainingConstants.saveOrderAndDisplay, params);
-                  this.trainings = res.data.data;
-                  this.$notify(notifyTemplate.make(res.data));
-              } catch (error) {
-                  console.log(error);
-                  this.$notify(notifyTemplate.unknownError());
-              }
-        }
+              let res = await this.$axios.post(trainingConstants.saveOrderAndDisplay, params);
+              this.trainings = res.data.data;
+              this.$notify(notifyTemplate.make(res.data));
+        },
+          createTraining(){
+              this.openModal = true;
+          },
+          editTraining(training){
+              this.openModal = true;
+              this.selectedTraining = training;
+          }
       }
 }
 </script>
