@@ -83,4 +83,14 @@ export default new class Authorization {
         localStorage.removeItem('user');
         store.commit('DELETE_USER')
     }
+
+    isAdmin() {
+        let user = JSON.parse(localStorage.getItem('user'));
+        if (user === null){
+            return false;
+        }
+        return user.hasRoles.filter(function(n) {
+            return ['admin'].indexOf(n) !== -1;
+        }).length > 0;
+    }
 }

@@ -123,10 +123,34 @@
               set: function() {
 
               }
-          }
-      },
-      watch: {
+          },
+          isAdmin: function () {
+              return auth.isAdmin()
+          },
+          userLinks: function () {
+              let userLinks = [
+                      {
+                          title: 'Settings',
+                          to: '#/settings',
+                          icon: 'build',
+                      },
+                      {
+                          title: 'Logout',
+                          to: '#/logout',
+                          icon: 'power_settings_new'
+                      },
+                  ];
 
+              if (this.isAdmin){
+                  userLinks.unshift({
+                    title: 'Admin',
+                    to: '#/admin',
+                    icon: 'adb',
+                  })
+              }
+
+              return userLinks
+          }
       },
       data () {
           return {
@@ -181,19 +205,6 @@
                       title: 'Контакты',
                       to: '#/contact',
                       icon: 'contact_phone'
-                  },
-              ],
-
-              userLinks: [
-                  {
-                      title: 'Settings',
-                      to: '#/settings',
-                      icon: 'build',
-                  },
-                  {
-                      title: 'Logout',
-                      to: '#/logout',
-                      icon: 'power_settings_new'
                   },
               ],
           }

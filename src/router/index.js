@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Content from '@/components/content/Content'
+import auth from '@/services/auth';
 // import {auth} from '@/services/auth'
 
 import home from '@/components/home/home.router'
@@ -39,6 +40,7 @@ router.beforeEach((to, from, next) => {
     document.title = to.meta.title;
     let user = JSON.parse(localStorage.getItem('user'));
 
+    //Если пользователь авторизирован - не пускаем на страницу
     if (to.path === '/login' && user !== null) {
         Vue.prototype.$notify({
             title: 'Вы уже авторизированы!',
@@ -48,6 +50,7 @@ router.beforeEach((to, from, next) => {
         return;
     }
 
+    // если путь ведёт в админку - чекаем наличие роли
     if (to.path.match(/admin[\/\w]+/i) !== null) {
 
         if (user === null){
@@ -57,10 +60,7 @@ router.beforeEach((to, from, next) => {
             });
             next(false);
         } else {
-            let hasRole = user.hasRoles.filter(function(n) {
-                return ['admin'].indexOf(n) !== -1;
-            });
-            if (hasRole.length < 1) {
+            if (! auth.isAdmin()) {
                 Vue.prototype.$notify({
                     title: 'Нет прав доступа',
                     type: 'error'
