@@ -24,8 +24,8 @@ const TRAINING_CRUD = CRUD + TRAINING;
 const trainingConstants  = {
     create: TRAINING_CRUD, //POST
     get: TRAINING_CRUD, //GET
-    saveOrderAndDisplay: TRAINING_CRUD + 'saveOrderAndDisplay', //POST
-    delete: TRAINING_CRUD //POST
+    saveOrderAndDisplay: TRAINING_CRUD + 'saveOrderAndDisplay', //PUT
+    delete: TRAINING_CRUD //DELETE
 };
 
 export {API, homeConstants, instagramConstants, authenticate, trainingConstants}

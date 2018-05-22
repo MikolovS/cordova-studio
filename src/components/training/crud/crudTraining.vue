@@ -48,7 +48,7 @@
                   </v-flex>
                   <v-flex xs3 lg2>
                     <p class="hidden-xs-only">Удалить</p>
-                    <v-btn fab small><v-icon>delete</v-icon></v-btn>
+                    <v-btn fab small @click="deleteTraining(item.slug)"><v-icon>delete</v-icon></v-btn>
                   </v-flex>
                   <v-flex xs lg2>
                     <p class="hidden-xs-only">Вкл/Выкл</p>
@@ -60,7 +60,7 @@
           </draggable>
           </v-flex>
 
-          <training v-if="openModal" :training="selectedTraining"></training>
+          <training v-if="openModal" :training="selectedTraining" :openModal="switchModal" :getTrainings="getTrainings"></training>
 
         </v-layout>
     </v-container>
@@ -92,11 +92,15 @@
             trainings: null
           }
       },
-      async created() {
-          let res = await this.$axios.get(trainingConstants.get);
-          this.trainings = res.data.data;
+        created() {
+          this.getTrainings();
       },
       methods: {
+          async getTrainings(){
+              let res = await this.$axios.get(trainingConstants.get);
+              this.trainings = res.data.data;
+              return res;
+          },
           async saveOrderAndDisplay(){
               let params = {};
               params.group_types = this.trainings.map(function (training, index) {
@@ -107,17 +111,29 @@
                 };
               });
 
-              let res = await this.$axios.post(trainingConstants.saveOrderAndDisplay, params);
-              this.trainings = res.data.data;
-              this.$notify(notifyTemplate.make(res.data));
+              let res = await this.$axios.put(trainingConstants.saveOrderAndDisplay, params);
+              if (res.data.data){
+                  this.trainings = res.data.data;
+                  this.$notify(notifyTemplate.make(res.data));
+              }
         },
-          createTraining(){
-              this.openModal = true;
-          },
-          editTraining(training){
-              this.openModal = true;
-              this.selectedTraining = training;
-          }
+        switchModal(){
+            this.openModal = ! this.openModal;
+        },
+        createTraining(){
+            this.openModal = true;
+        },
+        editTraining(training){
+            this.switchModal();
+            this.selectedTraining = training;
+        },
+        async deleteTraining(slug){
+            let res = await this.$axios.delete(trainingConstants.delete + slug);
+            if (res.data.data){
+                this.getTrainings();
+                this.$notify(notifyTemplate.make(res.data));
+            }
+        }
       }
 }
 </script>

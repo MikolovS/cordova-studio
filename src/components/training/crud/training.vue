@@ -58,10 +58,13 @@
     import PictureInput from 'vue-picture-input'
 
     import {trainingConstants} from '@/core/constants';
+    import notifyTemplate from '@/helpers/notifyTemplate'
 
     export default {
         props:[
-            'training'
+            'training',
+            'openModal',
+            'getTrainings'
         ],
       components: {
           VueEditor,
@@ -121,21 +124,32 @@
               }
           },
           async save() {
-              let params = {
-                  display_name: this.name,
-                  description: this.description,
-                  image: this.image,
-                  requirements: this.requirements,
-                  duration: this.duration,
-              };
+              if (this.isNew) {
+                  let params = {
+                      display_name: this.name,
+                      description: this.description,
+                      image: this.image,
+                      requirements: this.requirements,
+                      duration: this.duration,
+                  };
 
-              await this.$axios.post(trainingConstants.create, params)
-                  .then((res)=> {
-                      console.log(res)
-                  })
-                  .catch((error)=> {
-                      console.log(error);
-                  })
+                  var res = await this.$axios.post(trainingConstants.create, params);
+
+              } else {
+                  let params = {
+                      display_name: this.name,
+                      description: this.description,
+                      requirements: this.requirements,
+                      duration: this.duration,
+                  };
+                  if (this.image !== null){
+                      params.image = this.image;
+                  }
+                  var res = await this.$axios.post(trainingConstants.create + this.training.slug, params);
+              }
+              this.$notify(notifyTemplate.make(res.data));
+              this.openModal();
+              this.getTrainings();
           },
           changeImage(){
               this.old_img_url = this.image_url;
