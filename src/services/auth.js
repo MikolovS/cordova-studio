@@ -11,7 +11,6 @@ export default new class Authorization {
     async login(payload) {
         try {
             const res = await Axios.post(authenticate.login, payload);
-            console.log(res.data.token);
             this.setToken(res.data.token);
             this.setHeader();
             await this.getUser();

@@ -2,7 +2,7 @@ import CrudTraining from '@/components/training/crud/crudTraining'
 
 export default [
   {
-    path: '/crud/training',
+    path: 'admin/crud/training',
     component: CrudTraining,
     meta: {title: 'Редактор направлений'}
   }
