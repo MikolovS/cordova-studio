@@ -37,7 +37,7 @@
               }">
       </picture-input>
       <div class="text-xs-center" v-else>
-          <img :src="image_url" alt="training.img_url" style="max-width: 600px">
+          <img :src="image_url" alt="training.img_url" style="max-width: 100%; max-height: 600px">
       </div>
       <div class="text-xs-center" >
         <v-btn v-if="image_url"  large color="info" dark  @click="changeImage()">Сменить картинку</v-btn>

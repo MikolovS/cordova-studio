@@ -1,4 +1,4 @@
-import CrudTraining from '@/components/training/crud/crudTraining'
+import CrudTraining from '@/components/admin/training/crudTraining'
 
 export default [
   {

@@ -1,5 +1,6 @@
 <template>
         <v-tabs
+                v-if="trainings"
                 dark
                 color="cyan"
                 show-arrows
@@ -11,7 +12,7 @@
                     :key="i"
                     :href="'#tab-' + i"
             >
-                {{ training.name }}
+                {{ training.display_name }}
             </v-tab>
 
             <v-tabs-items>
@@ -20,24 +21,22 @@
                         :key="i"
                         :id="'tab-' + i"
                 >
-                    <v-container>
-                            <v-layout row wrap justify-center class="my-5">
-                                <v-flex xs12 sm10 lg8 offset-xs0>
-                                    <!--<img :src="training.img" :alt="training.img"-->
-                                         <!--style="max-width: 100%;-->
-                                            <!--max-height: 400px;-->
-                                            <!--display: block;-->
-                                            <!--margin-left: auto;-->
-                                            <!--margin-right: auto;">-->
+                    <v-container class="training-item">
+                            <v-layout row wrap justify-center >
+                                <v-flex xs12 sm10 lg7>
                                     <v-card class="elevation-0 transparent">
-                                    <v-card-media :src="training.img" height="400px" contain>
+                                    <v-card-media :src="training.img_url" height="350px" contain>
                                     </v-card-media>
                                     <v-card-title primary-title class="layout justify-center">
-                                    <div class="headline text-xs-center"><h4>{{ training.name }}</h4></div>
+                                    <div class="headline text-xs-center"><h4>{{ training.display_name }}</h4></div>
                                     </v-card-title>
-                                    <p class="word-wrap">{{ training.description }}</p>
-                                    <p><b>Что надо с собой иметь на тренировке: </b>{{ training.requirements }}</p>
-                                    <p><b>Длительность тренировки один час, включает в себя: </b>{{ training.duration }}</p>
+                                      <v-card-text v-html="training.description"></v-card-text>
+                                      <v-card-text>
+                                        <p><b>Что надо с собой иметь на тренировке: </b>{{ training.requirements }}</p>
+                                      </v-card-text>
+                                      <v-card-text>
+                                        <p><b>Продолжительность тренировки: </b>{{ training.duration }}</p>
+                                      </v-card-text>
                                     </v-card>
                                 </v-flex>
                             </v-layout>
@@ -51,48 +50,31 @@
 
 <script>
 
+    import {siteConstants} from '@/core/constants';
+
   export default {
       components: {
       },
       name: 'Training',
       data () {
           return {
-              trainings : [
-                  {
-                      'name' : 'Pole Intro',
-                      'description' : 'Pole Intro - Тренировка для тех, кто пришел на пилон впервые. Это вводный уровень занятий, где мы с вами будем изучать несложные крутки, базовые хваты и зацепы. Длится данное направление от 3х до 8ми занятий. За это время вы успеваете "почувствовать" себя на пилоне и с определенной базой перейти к начинающему уровню.\n' +
-                      'Систематизированная методика обучения упрощает и даёт большую результативность ваших тренировок. Идея ввести такой уровень в обиход принадлежит известной спортсменке акробатики и спорта на пилоне Кристине Думанской. Мы гордимся и рады, что имеем возможность обучать вас по данной методике, приносящей прекрасные результаты.\n',
-                      'img' : 'static/img/home/pole_sport.jpg',
-                      'requirements' : 'топ и шорты, носки (чешки или босиком), лосины (спортивные штаны) и кофта для разминки.',
-                      'duration' : 'разминку, работу на пилоне, офп и заминку.'
-                  },
-                  {
-                      'name' : 'Pole Kids',
-                      'description' : '231231awdawdawd 3d 23e r23e 232 ',
-                      'img' : 'static/img/home/pole_kids.jpg'
-                  },
-                  {
-                      'name' : 'Exotic',
-                      'description' : '23233241234',
-                      'img' : 'static/img/home/exotic.jpg'
-                  },
-                  {
-                      'name' : 'Exotic',
-                      'description' : '23233241234',
-                      'img' : 'static/img/home/exotic.jpg'
-                  },
-                  {
-                      'name' : 'Exotic',
-                      'description' : '23233241234',
-                      'img' : 'static/img/home/exotic.jpg'
-                  },
-              ]
+              trainings : null
+          }
+
+      },
+      created() {
+          this.getTrainings()
+      },
+      methods: {
+          async getTrainings() {
+              let res = await this.$axios.get(siteConstants.trainings);
+              this.trainings = res.data.data;
           }
       }
 }
 </script>
 
-<style scoped>
+<style >
     .word-wrap {
         white-space: pre-wrap !important;
         padding: 5px;
@@ -100,4 +82,11 @@
         text-align: justify;
         /*letter-spacing: 3px;*/
     }
+
+    @media screen and (max-width: 769px) {
+      .training-item {
+        padding: 0 !important;
+      }
+    }
+
 </style>

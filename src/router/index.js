@@ -12,11 +12,12 @@ import blog from '@/components/blog/blog.router'
 import instagram from '@/components/instagram/instagram.router'
 import contact from '@/components/contact/contact.router'
 import login from '@/components/login/login.router'
+import admin from '@/components/admin/admin.router'
 
 // CRUD
-import crudTraining from '@/components/training/crud/crudTraining.router'
+import crudTraining from '@/components/admin/training/crudTraining.router'
 
-let appRoutes = [...home, ...training, ...command, ...timetable, ...blog, ...instagram, ...contact, ...login, ...crudTraining];
+let appRoutes = [...home, ...training, ...command, ...timetable, ...blog, ...instagram, ...contact, ...login, ...crudTraining, ...admin];
 
 Vue.use(Router);
 

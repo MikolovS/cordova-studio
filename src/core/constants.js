@@ -28,4 +28,9 @@ const trainingConstants  = {
     delete: TRAINING_CRUD //DELETE
 };
 
-export {API, homeConstants, instagramConstants, authenticate, trainingConstants}
+const SITE = 'site/';
+const siteConstants = {
+    trainings:  SITE + 'trainings',
+};
+
+export {API, homeConstants, instagramConstants, authenticate, trainingConstants, siteConstants}

@@ -5,16 +5,16 @@
           <v-flex xs12 md4 lg5 v-if="! openModal">
 
             <v-layout row wrap justify-center  class="text-lg-center">
-              <v-flex xs6 lg6>
+              <v-flex xs5 lg6>
                 <v-btn @click="createTraining()">
-                  <v-icon>add_circle</v-icon>
-                  <span class="hidden-xs-only">Добавить направление</span>
+                  <v-icon class="hidden-xs-only">add_circle</v-icon>
+                  <span>Добавить</span>
                 </v-btn>
               </v-flex>
-              <v-flex xs6 lg6>
+              <v-flex xs7 lg6>
                 <v-btn @click="saveOrderAndDisplay()">
-                  <v-icon>save</v-icon>
-                  <span class="hidden-xs-only">Сохранить порядок</span>
+                  <v-icon  class="hidden-xs-only">save</v-icon>
+                  <span>Сохранить порядок</span>
                 </v-btn>
               </v-flex>
             </v-layout>
@@ -48,7 +48,7 @@
                   </v-flex>
                   <v-flex xs3 lg2>
                     <p class="hidden-xs-only">Удалить</p>
-                    <v-btn fab small @click="deleteTraining(item.slug)"><v-icon>delete</v-icon></v-btn>
+                    <v-btn fab small @click="openDialog(item.slug)"><v-icon>delete</v-icon></v-btn>
                   </v-flex>
                   <v-flex xs lg2>
                     <p class="hidden-xs-only">Вкл/Выкл</p>
@@ -62,6 +62,18 @@
 
           <training v-if="openModal" :training="selectedTraining" :openModal="switchModal" :getTrainings="getTrainings"></training>
 
+          <v-dialog v-model="dialog" max-width="290">
+            <v-card>
+              <v-card-title class="headline">Удалить елемент?</v-card-title>
+              <v-card-text>Можно просто отключить его отображение</v-card-text>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn color="green darken-1" flat="flat" @click.native="dialog = false">Нет</v-btn>
+                <v-btn color="green darken-1" flat="flat" @click.native="deleteTraining()">Да</v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
+
         </v-layout>
     </v-container>
 
@@ -70,7 +82,7 @@
 <script>
 
     import draggable from 'vuedraggable'
-    import Training from '@/components/training/crud/training'
+    import Training from '@/components/admin/training/training'
     import notifyTemplate from '@/helpers/notifyTemplate'
 
     import {trainingConstants} from '@/core/constants'
@@ -87,6 +99,8 @@
       name: 'crudTraining',
       data () {
           return {
+            dialog: false,
+            deletedSlug: null,
             selectedTraining: null,
             openModal: false,
             trainings: null
@@ -127,13 +141,22 @@
             this.switchModal();
             this.selectedTraining = training;
         },
-        async deleteTraining(slug){
-            let res = await this.$axios.delete(trainingConstants.delete + slug);
+        async deleteTraining(){
+            if (this.deletedSlug === null){
+                return;
+            }
+
+            this.dialog = false;
+            let res = await this.$axios.delete(trainingConstants.delete + this.deletedSlug);
             if (res.data.data){
                 this.getTrainings();
                 this.$notify(notifyTemplate.make(res.data));
             }
-        }
+        },
+          openDialog(slug){
+            this.dialog = true;
+            this.deletedSlug = slug;
+          }
       }
 }
 </script>

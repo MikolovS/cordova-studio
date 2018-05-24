@@ -1,10 +1,9 @@
 <template>
   <div class="main">
     <v-navigation-drawer
-            class="hidden-sm-and-up"
+            disable-resize-watcher
             temporary
             v-model="drawer"
-            absolute
             fixed
             :clipped="clipped"
             app
@@ -14,7 +13,7 @@
         <v-list-tile value="true" v-if="user">
           <v-list-tile-action  >
             <v-avatar class="grey lighten-4">
-              <img :src="user.img" alt="avatar">
+              <img :src="user.avatar" alt="avatar">
             </v-avatar>
           </v-list-tile-action>
           <v-list-tile-content>
@@ -56,7 +55,7 @@
               <v-icon>{{ item.icon }}</v-icon>
             </v-list-tile-action>
             <v-list-tile-content>
-              <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+              <v-list-tile-title @click="[item.to === '#/logout' ? logout() : '' ]">{{ item.title }}</v-list-tile-title>
             </v-list-tile-content>
           </v-list-tile>
         </v-list>
@@ -91,7 +90,7 @@
                 <v-icon>{{ item.icon }}</v-icon>
               </v-list-tile-action>
               <v-list-tile-content>
-                <v-list-tile-title @click="logout()">{{ item.title }}</v-list-tile-title>
+                <v-list-tile-title @click="[item.to === '#/logout' ? logout() : '' ]">{{ item.title }}</v-list-tile-title>
               </v-list-tile-content>
             </v-list-tile>
           </v-list>
