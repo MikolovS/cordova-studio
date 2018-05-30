@@ -23,7 +23,7 @@
                 >
                     <v-container class="training-item">
                             <v-layout row wrap justify-center >
-                                <v-flex xs12 sm10 lg7>
+                                <v-flex xs12 sm10 lg6>
                                     <v-card class="elevation-0 transparent">
                                     <v-card-media :src="training.img_url" height="350px" contain>
                                     </v-card-media>
