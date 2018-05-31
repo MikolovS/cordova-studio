@@ -21,7 +21,7 @@ const CRUD = ADMIN + 'crud/';
 const TRAINING = 'training/';
 const TRAINING_CRUD = CRUD + TRAINING;
 
-const trainingConstants  = {
+const trainingConstants = {
     create: TRAINING_CRUD, //POST
     get: TRAINING_CRUD, //GET
     saveOrderAndDisplay: TRAINING_CRUD + 'saveOrderAndDisplay', //PUT
@@ -44,7 +44,8 @@ const trainerConstants = {
 //SITE
 const SITE = 'site/';
 const siteConstants = {
-    trainings:  SITE + 'trainings',
+    trainings: SITE + 'trainings',
+    trainers: SITE + 'trainers',
 };
 
 export {API, homeConstants, instagramConstants, authenticate, trainingConstants, siteConstants, trainerConstants}
