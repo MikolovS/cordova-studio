@@ -62,8 +62,8 @@ export default {
                         icon: 'exit_to_app',
                     },
                     {
-                        title: 'Тренировки2',
-                        to: '#/admin/crud/training',
+                        title: 'Тренера',
+                        to: '#/admin/crud/trainer',
                         icon: 'exit_to_app',
                     },
                 ]

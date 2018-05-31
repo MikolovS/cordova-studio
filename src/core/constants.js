@@ -28,9 +28,23 @@ const trainingConstants  = {
     delete: TRAINING_CRUD //DELETE
 };
 
+//TRAINERS
+const TRAINER = 'trainer/';
+const TRAINER_CRUD = CRUD + TRAINER;
+
+const trainerConstants = {
+    getUsers: TRAINER_CRUD + 'users', //GET
+    update: TRAINER_CRUD, //GET + userName
+    create: TRAINER_CRUD, //POST
+    get: TRAINER_CRUD, //GET
+    saveOrderAndDisplay: TRAINER_CRUD + 'saveOrderAndDisplay', //PUT
+    delete: TRAINER_CRUD //DELETE
+};
+
+//SITE
 const SITE = 'site/';
 const siteConstants = {
     trainings:  SITE + 'trainings',
 };
 
-export {API, homeConstants, instagramConstants, authenticate, trainingConstants, siteConstants}
+export {API, homeConstants, instagramConstants, authenticate, trainingConstants, siteConstants, trainerConstants}
