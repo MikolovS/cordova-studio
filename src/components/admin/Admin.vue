@@ -66,6 +66,11 @@ export default {
                         to: '#/admin/crud/trainer',
                         icon: 'exit_to_app',
                     },
+                    {
+                        title: 'Группы',
+                        to: '#/admin/crud/group',
+                        icon: 'exit_to_app',
+                    },
                 ]
             },
         ],

@@ -17,8 +17,9 @@ import admin from '@/components/admin/admin.router'
 // CRUD
 import crudTraining from '@/components/admin/training/crudTraining.router'
 import crudTrainer from '@/components/admin/trainer/crudTrainer.router'
+import crudGroup from '@/components/admin/group/crudGroup.router'
 
-let appRoutes = [...home, ...training, ...command, ...timetable, ...blog, ...instagram, ...contact, ...login, ...crudTraining, ...admin, ...crudTrainer];
+let appRoutes = [...home, ...training, ...command, ...timetable, ...blog, ...instagram, ...contact, ...login, ...crudTraining, ...admin, ...crudTrainer, ...crudGroup];
 
 Vue.use(Router);
 

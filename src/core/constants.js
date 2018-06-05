@@ -41,6 +41,14 @@ const trainerConstants = {
     delete: TRAINER_CRUD //DELETE
 };
 
+//USER GROUP TYPES
+const USER_GROUP_TYPE = 'user-group-type/';
+const USER_GROUP_TYPE_CRUD = CRUD + USER_GROUP_TYPE;
+const userGroupTypeConstants = {
+    getUsers: USER_GROUP_TYPE_CRUD, //GET
+    sync: USER_GROUP_TYPE_CRUD, //post + userName
+};
+
 //SITE
 const SITE = 'site/';
 const siteConstants = {
@@ -48,4 +56,4 @@ const siteConstants = {
     trainers: SITE + 'trainers',
 };
 
-export {API, homeConstants, instagramConstants, authenticate, trainingConstants, siteConstants, trainerConstants}
+export {API, homeConstants, instagramConstants, authenticate, trainingConstants, siteConstants, trainerConstants, userGroupTypeConstants}
