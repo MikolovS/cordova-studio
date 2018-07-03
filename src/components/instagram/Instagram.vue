@@ -15,7 +15,7 @@
 
 <script>
 
-    import {instagramConstants} from '@/core/constants';
+    import {siteConstants} from '@/core/constants';
 
     export default {
         components: {
@@ -59,22 +59,18 @@
                 ++this.page
                 this.getFeed()
             },
-            getFeed() {
-                let that = this;
+            async getFeed() {
                 let params = {
                     page: this.page,
                     on_page: this.onPage,
                 };
-                Axios.get(instagramConstants.feed, {params})
-                    .then((res)=> {
-                    if (res.data.length > 0)
-                        that.posts = that.posts.concat(res.data)
-                      else
-                        that.loading = true
-                    })
-                    .catch((error)=> {
-                        console.log('error');
-                    })
+
+                let res = await this.$axios.get(siteConstants.instagram, {params});
+
+                if (res.data.length > 0)
+                    this.posts = this.posts.concat(res.data);
+                else
+                    this.loading = true;
             }
         }
     }

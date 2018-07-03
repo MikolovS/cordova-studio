@@ -4,10 +4,6 @@ const homeConstants = {
     home: '',
 };
 
-const instagramConstants = {
-    feed: 'instagram',
-};
-
 const authenticate = {
     login: 'auth/login',
     logout: 'auth/logout',
@@ -54,6 +50,7 @@ const SITE = 'site/';
 const siteConstants = {
     trainings: SITE + 'trainings',
     trainers: SITE + 'trainers',
+    instagram: SITE + 'instagram/',
 };
 
-export {API, homeConstants, instagramConstants, authenticate, trainingConstants, siteConstants, trainerConstants, userGroupTypeConstants}
+export {API, homeConstants, authenticate, trainingConstants, siteConstants, trainerConstants, userGroupTypeConstants}
